@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stone Model Viewer</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+  <audio id="bgMusic" loop>
+    <source src="edit-excursion-2.wav" type="audio/wav">
+</audio>
+<script src="audio.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        new AudioPlayer();
+    });
+</script>
+
+  <style>
+    @font-face {
+      font-family: 'CustomFont';
+      src: url('./fonts/IBMPlexSans-Regular.ttf') format('truetype');
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'CustomFont', Arial, sans-serif;
+    }
+    p, h2{
+      color:  rgb(212, 251, 120);
+    }
+
+    h2 {
+     font-size: 5em;
+    }
+
+    #box {
+      position: absolute;
+      top: 1%;
+      translate: 6%;
+      padding: 5px 10px;
+      border-radius: 10px;
+      z-index: 2;
+    }
+
+    #modelSwitch {
+    box-shadow: rgb(133, 230, 4) 0px 0px 41px, rgb(141, 166, 67) 0px 0px 0px inset;
+    background-color: rgb(4, 50, 255);
+    color:  rgb(212, 251, 120);
+    border-color: rgb(0, 252, 255);
+    border-width: 10px;
+    border-radius: 9px;
+    border-style: solid;
+    width: 130px;
+    height: 51px;
+    transform: scale(1.2);
+    font-size: 15px;
+    padding: 5px 10px 20px;
+    margin: 5%;
+    transition: all 200ms ease-in-out;
+    font-family: 'CustomFont', Arial, sans-serif;
+    cursor: pointer;
+}
+
+#modelSwitch:hover {
+    box-shadow: inset 1px 1px 10px rgba(217, 217, 217, 0.897);
+    border-color: rgb(208, 255, 0);
+}
+
+    .nav-buttons {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      gap: 20px;
+  }
+  .custom-button {
+        box-shadow:  rgb(133, 230, 4) 0px 0px 41px, rgb(141, 166, 67) 0px 0px 0px inset;
+        background-color: rgb(4, 50, 255);
+        color: rgb(212, 251, 120);
+        border-color: rgb(0, 252, 255);
+        border-width: 10px;
+        border-radius: 9px;
+        border-style: dashed;
+        width: 130px;
+        height: 51px;
+        transform: scale(1.2);
+        font-size: 15px;
+        padding: 5px 10px 20px;
+        margin: auto;
+        transition: all 200ms ease-in-out;
+    }
+
+    .custom-button:hover {
+        box-shadow: inset 1px 1px 10px rgba(217, 217, 217, 0.897);
+        border-color: rgb(255, 0, 208);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="box">
+    <h2>Welcome to the Museum of Stones</h2>
+    <!-- <p>Click and drag to rotate the model</p> -->
+  </div>
+  
+    <a-scene>
+       
+          <a-sky src="texture_1004.png"></a-sky>
+   
+            <!-- Stone Model with mouse rotation only -->
+            <a-entity
+              id="stoneModel"
+              position="0 1.5 -2"
+              gltf-model="url(./stone-model.glb)"
+              drag-rotate-component
+              cursor-listener>
+            </a-entity>
+        
+            <a-entity
+              id="stoneModel2"
+              position="0 1.5 -2"
+              gltf-model="url(./stone-model2.glb)"
+              drag-rotate-component
+              cursor-listener
+              visible="false">
+            </a-entity>
+
+            <a-entity
+            id="stoneModel3"
+            position="0 1.5 -2"
+            gltf-model="url(./stone-model3.glb)"
+            drag-rotate-component
+            cursor-listener
+            visible="false">
+          </a-entity>
+
+
+    <!-- Fixed Camera -->
+    <a-entity position="0.5 0.5 1">
+      <a-camera look-controls="enabled: false" wasd-controls="enabled: false"></a-camera>
+    </a-entity>
+
+    <!-- Lighting -->
+
+    <a-entity light="type: ambient; intensity: 0.6"></a-entity>
+    <a-entity light="type: directional; intensity: 0.6" position="-0.5 1 15"></a-entity>
+  </a-scene>
+  <div class="nav-buttons">
+    <button id="modelSwitch">Switch</button>
+    <button class="custom-button" onclick="window.location.href='index.html'">Return</button>
+    <!-- <button class="nav-button" onclick="window.location.href='photos.html'">Next</button> -->
+</div>
+
+
+  <script>
+     document.getElementById('modelSwitch').addEventListener('click', function() {
+    const model1 = document.getElementById('stoneModel');
+    const model2 = document.getElementById('stoneModel2');
+    const model3 = document.getElementById('stoneModel3');
+    
+    if (model1.getAttribute('visible') !== false) {
+        // Switch from model 1 to model 2
+        model1.setAttribute('visible', false);
+        model2.setAttribute('visible', true);
+        model3.setAttribute('visible', false);
+    } else if (model2.getAttribute('visible') !== false) {
+        // Switch from model 2 to model 3
+        model1.setAttribute('visible', false);
+        model2.setAttribute('visible', false);
+        model3.setAttribute('visible', true);
+    } else {
+        // Switch back to model 1
+        model1.setAttribute('visible', true);
+        model2.setAttribute('visible', false);
+        model3.setAttribute('visible', false);
+    }
+});
+    AFRAME.registerComponent('drag-rotate-component', {
+      init: function () {
+        this.rotation = { x: 0, y: 0 };
+        this.isDragging = false;
+        this.previousMousePosition = { x: 0, y: 0 };
+
+        document.addEventListener('mousedown', this.onMouseDown.bind(this));
+        document.addEventListener('mousemove', this.onMouseMove.bind(this));
+        document.addEventListener('mouseup', this.onMouseUp.bind(this));
+      },
+
+      onMouseDown: function (event) {
+        this.isDragging = true;
+        this.previousMousePosition = {
+          x: event.clientX,
+          y: event.clientY
+        };
+      },
+
+      onMouseMove: function (event) {
+        if (!this.isDragging) return;
+
+        const deltaMove = {
+          x: event.clientX - this.previousMousePosition.x,
+          y: event.clientY - this.previousMousePosition.y
+        };
+
+        this.rotation.y += deltaMove.x * 0.01;
+        this.rotation.x += deltaMove.y * 0.01;
+
+        this.el.object3D.rotation.x = this.rotation.x;
+        this.el.object3D.rotation.y = this.rotation.y;
+
+        this.previousMousePosition = {
+          x: event.clientX,
+          y: event.clientY
+        };
+      },
+
+      onMouseUp: function () {
+        this.isDragging = false;
+      }
+    });
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High Technology Park Excursion</title>
+    <audio id="bgMusic" loop>
+        <source src="edit-excursion-2.wav" type="audio/wav">
+    </audio>
+    <script src="audio.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new AudioPlayer();
+        });
+    </script>
+    <style>
+        @font-face {
+      font-family: 'CustomFont';
+      src: url('./fonts/IBMPlexSans-Regular.ttf') format('truetype');
+    }
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('texture_1006.png'); /* Add your image path here */
+            background-color: blue;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            font-family: 'CustomFont', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            padding: 20px 20px;
+            text-align: center;
+            background-color: rgba(0, 17, 255, 0.7); /* Semi-transparent black background */
+            margin: 20px;
+        }
+        h1 {
+            font-size: 2.3em;
+            margin-bottom: 40px;
+             margin-top: 0;
+color: rgb(212, 251, 120);
+      text-shadow: 0 0 10px rgb(133, 230, 4);
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+        a {
+            color: #44ff00;
+            text-decoration: none;
+        }
+        .nav-buttons {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      gap: 20px;
+  }
+  .custom-button {
+        box-shadow:  rgb(133, 230, 4) 0px 0px 41px, rgb(141, 166, 67) 0px 0px 0px inset;
+        background-color: rgb(4, 50, 255);
+        color: rgb(212, 251, 120);
+        border-color: rgb(0, 252, 255);
+        border-width: 10px;
+        border-radius: 9px;
+        border-style: dashed;
+        width: 130px;
+        height: 51px;
+        transform: scale(1.2);
+         font-size: 15px;
+       padding: 5px 10px 20px;
+       margin: 5%;
+        transition: all 200ms ease-in-out;
+    }
+
+    .custom-button:hover {
+        box-shadow: inset 1px 1px 10px rgba(217, 217, 217, 0.897);
+        border-color: rgb(255, 0, 208);
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Excursion around High Technology Park</h1>
+        <p>
+            Excursion around High Technology Park summarises research on particular topographies of Minsk, 
+            which nowadays mostly belong to a High Technology Park (HTP). 
+            Besides offices of various IT companies and start-ups, 
+            this location includes the Museum of Stones, an open-air geological museum and recreation zone, 
+            and the Academy of Sciences facilities, some of which were abandoned 
+            and have been used for raves and punk concerts since the early 2000s.     </p>
+            <p> Since 2005, these facilities have been partly redeveloped into the HTP, 
+                a state project that generates tax revenue and a legal structure for the development 
+                of IT technologies in Belarus. Initially based on the idea of outsourcing highly professionalised 
+                IT labour to a much cheaper workforce in Belarus, it became a cluster of several hundred companies 
+                operating extraterritorially and performing research on AI, software, gaming and apps 
+                for health and finance sectors, including cryptocurrency and blockchain research. 
+                At the same time, it also remains under strict ideological control and its 
+                administration is subordinated to the state.</p>
+            
+            
+            <p>In 2020, the site became one 
+                of the key spaces in the topography of protests. Many IT workers took part in 
+                the protests and developed various tech solutions for alternative voting systems, 
+                political mobilisation and solidarity actions. Mixing various visual artefacts, 
+                3D renders, IT work, political protests and stories of protagonists who were involved in 
+                the punk and rave subcultures. It is a guided tour through the history of the HTP, 
+                trapped in the historical and contemporary contradictions of emancipation and control. 
+                
+
+            
+<!--             
+            Welcome to an immersive journey through the High Technology Park, 
+            where innovation meets architecture. This virtual excursion will 
+            guide you through our state-of-the-art facilities, showcasing the 
+            blend of modern design and technological advancement. Experience 
+            the dynamic environment where leading tech companies and startups 
+            collaborate to shape the future of technology. -->
+        </p>
+        <p>by curators of the  <a href="https://www.if-disrupted.lt/">If disrupted, it becomes tangible.</a> Aleksei Borisionok & Antonina Stebur</p>
+    </div>
+
+    <div class="nav-buttons">
+        <button class="custom-button" onclick="window.location.href='index.html'">Return</button>
+    </div>
+</body>
+</html>

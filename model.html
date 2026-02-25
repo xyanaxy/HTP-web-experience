@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High Technology Park Virtual Tour</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+  <audio id="bgMusic" loop>
+    <source src="edit-excursion-2.wav" type="audio/wav">
+</audio>
+<script src="audio.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        new AudioPlayer();
+    });
+</script>
+
+  <style>
+     @font-face {
+      font-family: 'CustomFont';
+      src: url('./fonts/IBMPlexSans-Regular.ttf') format('truetype');
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'CustomFont', Arial, sans-serif;
+    }
+     /* p, h2{
+      color:  rgb(212, 251, 120);
+    }
+
+    h2 {
+     font-size: 3em;
+    }
+
+       #box {
+      position: absolute;
+      top: 1%;
+      translate: 6%;
+      padding: 5px 10px;
+      border-radius: 10px;
+      z-index: 2;
+    } */
+
+    #overlay {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: rgb(4, 50, 255);
+      /* background-color: rgb(4, 50, 255); */
+      padding: 20px;
+      border-radius: 9px;
+      z-index: 2;
+
+      box-shadow: rgb(133, 230, 4) 0px 0px 41px, rgb(141, 166, 67) 0px 0px 0px inset;
+      font-family: 'CustomFont', Arial, sans-serif;
+      transition: all 200ms ease-in-out;
+    }
+
+    #overlay h2 {
+      margin-top: 0;
+      font-size: 26px;
+      text-shadow: 0 0 10px rgb(133, 230, 4);
+    }
+
+    #overlay p {
+      margin: 10px 0;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    a-scene {
+      width: 100%;
+      height: 100%;
+    }
+
+    .nav-buttons {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      gap: 20px;
+  }
+  .custom-button {
+        box-shadow:  rgb(133, 230, 4) 0px 0px 41px, rgb(141, 166, 67) 0px 0px 0px inset;
+        background-color: rgb(4, 50, 255);
+        color: rgb(212, 251, 120);
+        border-color: rgb(0, 252, 255);
+        border-width: 10px;
+        border-radius: 9px;
+        border-style: dashed;
+        width: 130px;
+        height: 51px;
+        transform: scale(1.2);
+       font-size: 15px;
+    padding: 5px 10px 20px;
+    margin: 5%;
+        transition: all 200ms ease-in-out;
+    }
+
+    .custom-button:hover {
+        box-shadow: inset 1px 1px 10px rgba(217, 217, 217, 0.897);
+        border-color: rgb(255, 0, 208);
+    }
+  </style>
+</head>
+<body>
+   <div id="box">
+    
+    <!-- <p>Click and drag to rotate the model</p> -->
+  </div>
+
+
+  <div id="overlay">
+    <h2>Excursion around High Technology Park</h2>
+    <p>Click inside the scene to enable mouse look.  </p>
+    <p> Use arrow keys to move. Press ESC to quit mouse look.</p>
+  </div>
+
+  <a-scene cursor="rayOrigin: mouse">
+    <!-- Sky -->
+    <a-sky color="#ECECEC"></a-sky>
+    
+    <!-- 3D Model -->
+    <a-entity gltf-model="url(./model-2.glb)"></a-entity>
+
+    <!-- Camera with movement -->
+    <a-entity id="cameraRig" position="-20 -1 -60">
+      <a-camera wasd-controls="acceleration: 50" look-controls="pointerLockEnabled: true"></a-camera>
+    </a-entity>
+    <a-sky src="sky.png"></a-sky>
+    <!-- Lighting -->
+    <a-entity light="type: hemisphere; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
+  </a-scene>
+  <div class="nav-buttons">
+    <button class="custom-button" onclick="window.location.href='index.html'">Return</button>
+</div>
+</body>
+</html>

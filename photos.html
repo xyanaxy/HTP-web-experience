@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-outline@%5E1.1.0/build/aframe-outline.min.js"></script>
+    <script src="./script/photos.js"></script>
+    <audio id="bgMusic" loop>
+      <source src="edit-excursion-2.wav" type="audio/wav">
+  </audio>
+  <script src="audio.js"></script>
+  <script>
+      document.addEventListener('DOMContentLoaded', () => {
+          new AudioPlayer();
+      });
+  </script>
+
+<style>
+  @font-face {
+      font-family: 'CustomFont';
+      src: url('./fonts/IBMPlexSans-Regular.ttf') format('truetype');
+    }
+  .nav-buttons {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      gap: 20px;
+  }
+  .custom-button {
+        box-shadow:  rgb(133, 230, 4) 0px 0px 41px, rgb(141, 166, 67) 0px 0px 0px inset;
+        background-color: rgb(4, 50, 255);
+        color: rgb(212, 251, 120);
+        border-color: rgb(0, 252, 255);
+        border-width: 10px;
+        border-radius: 9px;
+        border-style: dashed;
+        width: 130px;
+        height: 51px;
+        transform: scale(1.2);
+         font-size: 15px;
+    padding: 5px 10px 20px;
+    margin: 5%;
+        transition: all 200ms ease-in-out;
+    }
+
+    .custom-button:hover {
+        box-shadow: inset 1px 1px 10px rgba(217, 217, 217, 0.897);
+        border-color: rgb(255, 0, 208);
+    }
+    /* .loading-text {
+
+    } */
+</style>
+  </head>
+
+
+  <body>
+    <div id="p5_loading" class="loadingclass">
+       <div class = "loading-text">Loading...</div> 
+    </div>
+    
+   <div class="sketch-div" id="sketch-div"></div>
+   
+     <div class="nav-buttons">
+        <button class="custom-button" onclick="window.location.href='index.html'">Return</button>
+        <!-- <button class="nav-button" onclick="window.location.href='stone.html'">Next</button> -->
+    </div>
+
+  </body>
+</html>

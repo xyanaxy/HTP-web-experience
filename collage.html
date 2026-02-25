@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collage</title>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
+  <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-outline@%5E1.1.0/build/aframe-outline.min.js"></script>
+  <script src="./script2/collage.js"></script>
+
+  <audio id="bgMusic" loop>
+    <source src="edit-excursion-2.wav" type="audio/wav">
+</audio>
+<script src="audio.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        new AudioPlayer();
+    });
+</script>
+
+<style>
+    @font-face {
+        font-family: 'CustomFont';
+        src: url('./fonts/IBMPlexSans-Regular.ttf') format('truetype');
+      }
+    .nav-buttons {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        display: flex;
+        gap: 20px;
+    }
+    .custom-button {
+        box-shadow:  rgb(133, 230, 4) 0px 0px 41px, rgb(141, 166, 67) 0px 0px 0px inset;
+        background-color: rgb(4, 50, 255);
+        color: rgb(212, 251, 120);
+        border-color: rgb(0, 252, 255);
+        border-width: 10px;
+        border-radius: 9px;
+        border-style: dashed;
+        width: 130px;
+        height: 51px;
+        transform: scale(1.2);
+         font-size: 15px;
+    padding: 5px 10px 20px;
+    margin: 5%;
+        transition: all 200ms ease-in-out;
+    }
+
+    .custom-button:hover {
+        box-shadow: inset 1px 1px 10px rgba(217, 217, 217, 0.897);
+        border-color: rgb(255, 0, 208);
+    }
+  </style>
+</head>
+<body>
+        <div style="position: fixed; bottom: 20px; left: 20px; z-index: 100;">
+            <style>
+                /* Styling for the slider track */
+                #tileSlider {
+                    -webkit-appearance: none;
+                    width: 200px;
+                    height: 10px;
+                    background: linear-gradient(to right, #4CAF50, #8BC34A);
+                    outline: none;
+                    opacity: 0.7;
+                    transition: opacity .2s;
+                }
+            
+                /* Hover effect */
+                #tileSlider:hover {
+                    opacity: 1;
+                }
+            
+                /* Styling for the slider thumb */
+                #tileSlider::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    background: #ffffff;
+                    border: 2px solid #4CAF50;
+                    cursor: pointer;
+                    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+                    transition: all .2s;
+                }
+            
+                #tileSlider::-webkit-slider-thumb:hover {
+                    background: #4CAF50;
+                    transform: scale(1.1);
+                }
+            
+                /* Firefox support */
+                #tileSlider::-moz-range-thumb {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    background: #ffffff;
+                    border: 2px solid #4CAF50;
+                    cursor: pointer;
+                    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+                    transition: all .2s;
+                }
+            </style>
+            
+            <input type="range" id="tileSlider" min="50" max="300" value="150">
+        </div>
+    <div class="sketch-div" id="sketch-div"></div>
+
+    <div class="nav-buttons">
+        <button class="custom-button" onclick="window.location.href='index.html'">Return</button>
+        <!-- <button class="nav-button" onclick="window.location.href='stone.html'">Next</button> -->
+    </div>
+
+</body>
+</html>
+
+
